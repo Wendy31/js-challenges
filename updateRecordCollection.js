@@ -1,3 +1,10 @@
+/*You are given an object literal representing a part of your musical album 
+collection. Each album has a unique id number as its key and several other properties. 
+Not all albums have complete information.You start with an updateRecords function that 
+takes an object literal, records, containing the musical album collection, an id, a 
+prop (like artist or tracks), and a value. Complete the function using the rules below 
+to modify the object passed to the function. */
+
 const recordCollection = {
     2548: {
         albumTitle: 'Slippery When Wet',
@@ -18,39 +25,37 @@ const recordCollection = {
     }
 };
 
-// 1. no track/ value > add props
-// 2. has track/ no value > create array and add value
-// 3. has track/ value > add value at the end of array
-// 4. has track but empty array > delete track property 
+// 1. if prop param is not tracks and value is not empty, set album's prop and value
+// 2. if prop param is tracks but album does not have such prop, set album's prop tracks with array of values
+// 3. if prop param is tracks and value is not empty, add value to the end of array
+// 4. if value is empty, delete album's prop
+
+let property = "";
 function updateRecords(records, id, prop, value) {
-    
     for (let keyId in records) {
         console.log("keyId: " + keyId);
         if (id == keyId) {
-            for (keyProp in records[id]) {
-                console.log("keyProp: " + keyProp);
-                // 1. if prop isnt tracks and value isnt empty strings update or set prop
-                if (keyProp != "tracks" && Object.values(records[keyId]).includes("")) {
-                    keyProp = value;
-                    //records[id][prop] + keyProp;
-                    console.log("1st loop " + keyProp);
-
-                    // 2. has track/ no value > create array and add value
-                } else if (key === prop && records[id][key].length > 0) {
-                    key = [value];
-                    console.log("2nd loop " + records[id]);
-                } else if (key === prop && records[id][key].length > 0) {
-                    object.key.tracks.push(val);
-                } else if (i == "tracks" && records[id][key].length == 0) {
-                    delete object.key.tracks;
+            for (let keyProp in records[keyId]) {
+                property = keyProp;
+                console.log("Property: " + property);
+                if (prop != "tracks" && value != "") {
+                    let propVal = records[keyId][prop] = value;
+                    console.log("Property has new value added: " + propVal);
+                } else if (prop === "tracks" && records[keyId].tracks == null && value != "") {
+                    let trackAndVal = records[keyId][prop] = [value];
+                    console.log("Both \"tracks\" and its values added: " + trackAndVal);
+                } else if (prop == "tracks" && value != "") {
+                    let valPosition = records[keyId].tracks;
+                    valPosition.push(value);
+                    console.log("New value added at the end: " + valPosition);
+                } else if (value == "") {
+                    console.log("Property deleted: " + records[keyId][prop]);
+                    delete records[keyId][prop];
                 }
                 console.log(records);
                 return records;
-
             }
         }
-
     }
-
 }
-updateRecords(recordCollection, 1245, 'artist', 'ABBA');
+updateRecords(recordCollection, 5439, 'artist', 'ABBA');
