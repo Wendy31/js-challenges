@@ -28,23 +28,23 @@ const contacts = [{
 function lookUpProfile(name, prop) {
     // Only change code below this line
     for (let con in contacts) {
-        console.log(contacts[con]);
-        for (let propKey in contacts[con]) {
-            console.log(propKey);
-            if (name == contacts[con].firstName && contacts[con].hasOwnProperty(prop) == true) {
-                console.log("Property: " + propKey);
-                return propKey;
-            } else if (name != contacts[con].firstName) {
-                console.log("No such contact: " + contacts[con].firstName);
-                return "No such contact";
-            } else if (contacts[con].hasOwnProperty(prop) == false) {
-                console.log("No such property: ");
-                return "No such property";
-            }
+        console.log(contacts[0]);
+        console.log("Has prop: " + prop + " = " + contacts[con].hasOwnProperty(prop));
+        if (name == contacts[con].firstName && contacts[con].hasOwnProperty(prop) == true) {
+            console.log("Property: " + prop);
+            console.log("Prop value: " + contacts[con][prop]);
+            return contacts[con][prop];
+        } else if (name != contacts[con].firstName) {
+            console.log("No such contact: ");
+            return "No such contact";
+        } else if (contacts[con].hasOwnProperty(prop) == false) {
+            console.log("No such property: ");
+            return "No such property";
         }
     }
-
-    // Only change code above this line
 }
+
+// Only change code above this line
+
 
 lookUpProfile("Akira", "likes");
