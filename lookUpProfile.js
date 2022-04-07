@@ -1,4 +1,14 @@
-// Setup
+/*
+We have an array of objects representing different people in our contacts lists.
+A lookUpProfile function that takes name and a property (prop) as arguments has been
+pre-written for you. The function should check if name is an actual contact's firstName
+and the given property (prop) is a property of that contact. If both are true, then
+return the "value" of that property. If name does not correspond to any contacts then
+return the string No such contact. If prop does not correspond to any valid properties 
+of a contact found to match name then return the string No such property. 
+*/
+
+// data
 const contacts = [{
         firstName: "Akira",
         lastName: "Laine",
@@ -25,26 +35,22 @@ const contacts = [{
     },
 ];
 
+// function
 function lookUpProfile(name, prop) {
-    // Only change code below this line
-    for (let con in contacts) {
-        console.log(contacts[0]);
-        console.log("Has prop: " + prop + " = " + contacts[con].hasOwnProperty(prop));
-        if (name == contacts[con].firstName && contacts[con].hasOwnProperty(prop) == true) {
-            console.log("Property: " + prop);
-            console.log("Prop value: " + contacts[con][prop]);
-            return contacts[con][prop];
-        } else if (name != contacts[con].firstName) {
-            console.log("No such contact: ");
-            return "No such contact";
-        } else if (contacts[con].hasOwnProperty(prop) == false) {
-            console.log("No such property: ");
-            return "No such property";
+    for (let i = 0; i < contacts.length; i++) {
+        if (name == contacts[i].firstName) {
+            if (contacts[i].hasOwnProperty(prop) == true) {
+                console.log("Value: " + contacts[i][prop]);
+                return contacts[i][prop];
+            } else {
+                console.log("No such property");
+                return "No such property";
+            }
         }
     }
+    // return out of the for-loop as a final catch-all
+    console.log("No such contact");
+    return "No such contact";
 }
 
-// Only change code above this line
-
-
-lookUpProfile("Akira", "likes");
+lookUpProfile("Akira", "lastName");
