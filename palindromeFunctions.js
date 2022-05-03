@@ -40,8 +40,8 @@ function sentence(s) {
 
 function removeAtMostOne(s) {
   // find the middle index and remove that value
-  let midIndex = s.length / 2 - 1;
-  const charRemoved = s.replace(midIndex, "");
+  let midIndexOdd = s.length / 2 - 1;
+  const charRemoved = s.replace(midIndexOdd, "");
   console.log(s);
   console.log(midIndex);
   console.log(charRemoved);
@@ -58,4 +58,4 @@ function removeAtMostOne(s) {
 
 word("hannah");
 sentence("don't nod");
-removeAtMostOne("hellohello");
+removeAtMostOne("levrel");
